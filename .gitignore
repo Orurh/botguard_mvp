@@ -1,0 +1,41 @@
+build/
+install/
+log/
+.cache/
+.vscode/
+.idea/
+*.pyc
+__pycache__/
+compile_commands.json
+.clangd
+.clang-tidy
+.clang-format
+# Additional build directories
+/build-*/
+/cmake-build-*/
+
+# Local code dumps
+/botguard_all_code.txt
+
+# Local credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Runtime SQLite storage and sidecars
+*.db
+*.db-*
+*.db.runtime
+*.db.runtime-*
+*.db.lock
+*.sqlite
+*.sqlite-*
+*.sqlite3
+*.sqlite3-*
+
+# Local sockets
+*.sock
