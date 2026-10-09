@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="540" viewBox="0 0 1100 540" role="img" aria-labelledby="title desc">
+<title id="title">BotGuard execution safety architecture</title>
+<desc id="desc">Strategy sends an intent over a local Unix socket to BotGuard; BotGuard validates risk, writes a durable pending order, submits to a venue, persists outcome, and reconciles uncertain state.</desc>
+<defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#0c1626"/><stop offset="1" stop-color="#102438"/></linearGradient><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#72cccf"/></marker></defs>
+<rect width="1100" height="540" rx="22" fill="url(#bg)"/><rect x="1" y="1" width="1098" height="538" rx="21" stroke="#335b74" fill="none"/>
+<text x="45" y="54" font-family="Arial,sans-serif" font-size="24" font-weight="700" fill="#f0f7fb">Execution path</text>
+<text x="45" y="84" font-family="Arial,sans-serif" font-size="15" fill="#afc7d9">Local agent · durable submission · fail-closed recovery</text>
+<rect x="44" y="137" width="222" height="102" rx="12" fill="#1b3346" stroke="#638296"/>
+<text x="155" y="179" fill="white" font-family="Arial,sans-serif" font-size="21" text-anchor="middle" font-weight="700">Strategy</text>
+<text x="155" y="207" fill="#9fbecf" font-family="Arial,sans-serif" font-size="14" text-anchor="middle">SubmitIntent via UDS</text>
+<path d="M266 188H332" fill="none" stroke="#72cccf" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="345" y="117" width="408" height="300" rx="18" fill="#112e3f" stroke="#55cbbb" stroke-width="2"/>
+<text x="549" y="153" fill="#e7fffb" font-family="Arial,sans-serif" font-size="23" text-anchor="middle" font-weight="700">BotGuard</text>
+<text x="549" y="177" fill="#a0c9c8" font-family="Arial,sans-serif" font-size="14" text-anchor="middle">Single owning execution path</text>
+<rect x="385" y="201" width="328" height="40" rx="8" fill="#24465a"/><text x="549" y="227" font-family="Arial,sans-serif" font-size="17" text-anchor="middle" fill="#fff">Risk checks / admission</text>
+<path d="M549 241V265" stroke="#72cccf" stroke-width="2.5" marker-end="url(#arrow)"/>
+<rect x="385" y="274" width="328" height="40" rx="8" fill="#24465a"/><text x="549" y="300" font-family="Arial,sans-serif" font-size="17" text-anchor="middle" fill="#fff">Durable PENDING_SUBMIT</text>
+<path d="M549 314V338" stroke="#72cccf" stroke-width="2.5" marker-end="url(#arrow)"/>
+<rect x="385" y="347" width="328" height="44" rx="8" fill="#24465a"/><text x="549" y="375" font-family="Arial,sans-serif" font-size="17" text-anchor="middle" fill="#fff">Submit / persist / reconcile</text>
+<path d="M753 290H832" stroke="#72cccf" stroke-width="3" marker-end="url(#arrow)" fill="none"/>
+<rect x="844" y="137" width="212" height="102" rx="12" fill="#1b3346" stroke="#638296"/>
+<text x="950" y="178" fill="#fff" font-family="Arial,sans-serif" font-size="21" text-anchor="middle" font-weight="700">Venue</text><text x="950" y="207" fill="#9fbecf" font-family="Arial,sans-serif" font-size="14" text-anchor="middle">Exchange / simulator</text>
+<path d="M950 239V455H549V418" fill="none" stroke="#72cccf" stroke-width="2.5" stroke-dasharray="7 6" marker-end="url(#arrow)"/>
+<text x="751" y="478" fill="#aad8d1" font-family="Arial,sans-serif" font-size="15" text-anchor="middle">Response / recovery observations</text>
+<text x="44" y="483" fill="#a3bace" font-family="Arial,sans-serif" font-size="15">On uncertainty: reconcile, never blindly resubmit.</text>
+<text x="44" y="510" fill="#a3bace" font-family="Arial,sans-serif" font-size="15">On unsafe state: fail closed.</text>
+</svg>
