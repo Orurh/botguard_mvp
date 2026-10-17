@@ -1,0 +1,42 @@
+name: Offline C++ safety tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: C++23 / SQLite / fault injection
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install offline test dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            cmake g++ libsqlite3-dev libgtest-dev
+
+      - name: Configure (no exchange integration)
+        run: |
+          cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug \
+            -DBOTGUARD_BUILD_SQLITE_STORE=ON \
+            -DBOTGUARD_BUILD_KALSHI_ADAPTER=OFF \
+            -DBOTGUARD_BUILD_TESTS=ON \
+            -DBOTGUARD_BUILD_BENCHMARKS=OFF
+
+      - name: Build
+        run: cmake --build build --parallel 2
+
+      - name: Run unit, integration and crash/recovery tests
+        run: ctest --test-dir build --output-on-failure --timeout 120
+
+      - name: Verify offline failure simulation explicitly
+        run: ./build/botguard_failure_demo
