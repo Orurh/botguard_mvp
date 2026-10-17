@@ -2,6 +2,10 @@
 
 **A local, venue-agnostic execution-safety layer for automated trading systems.**
 
+[![Offline C++ safety tests](https://github.com/Orurh/botguard_mvp/actions/workflows/offline-ci.yml/badge.svg)](https://github.com/Orurh/botguard_mvp/actions/workflows/offline-ci.yml)
+
+The CI suite exercises the core with SQLite and a fault-injecting simulator **without accessing Kalshi or other exchanges**.
+
 [![C++23](https://img.shields.io/badge/C%2B%2B-23-00599C?logo=cplusplus&logoColor=white)](CMakeLists.txt)
 [![Linux](https://img.shields.io/badge/Platform-Linux-23384d?logo=linux&logoColor=white)](README.md)
 [![CMake](https://img.shields.io/badge/Build-CMake-064F8C?logo=cmake&logoColor=white)](CMakeLists.txt)
